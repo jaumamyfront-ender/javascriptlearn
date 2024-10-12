@@ -1,0 +1,93 @@
+  css={[
+                tw` inset-0 flex items-center justify-center w-full xl:min-w-[720px] xl:min-h-[405px] xl:max-w-[880px] xl:max-h-[490px] `,
+                tw`w-full`,
+                isVertical
+                  ? tw`aspect-[9/16] xs:aspect-[16/9]`
+                  : tw`aspect-[16/9]`,
+
+                css`
+                  background-image: url(${videoPosterUrl});
+                  background-size: ${isVertical ? '33% 100%' : '100%'};
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  @media (min-width: 200px) and (max-width: 449px) {
+                    background-size: 100%;
+                  }
+                `,
+              ]}
+			  ////////////////////
+			    css={[
+            tw` inset-0 flex items-center justify-center w-full`,
+            tw`w-full`,
+            isVertical ? tw`aspect-[9/16] xs:aspect-[16/9]` : tw`aspect-[16/9]`,
+            !!height &&
+              height > 1000 &&
+              css`
+                height: calc(100vh - 430px);
+              `,
+
+            css`
+              background-image: url(${videoPosterUrl});
+              background-size: cover;
+              background-position: center;
+            `,
+          ]}
+
+		  ==================================
+		        css={[
+              tw` inset-0 flex items-center justify-center w-full xl:min-w-[720px] xl:min-h-[405px] xl:max-w-[880px] xl:max-h-[490px] `,
+              tw`w-full`,
+              isVertical
+                ? tw`aspect-[9/16] xs:aspect-[16/9]`
+                : tw`aspect-[16/9]`,
+
+              css`
+                background-image: url(${videoPosterUrl});
+                background-size: ${isVertical ? '51.5% 100%' : '100%'};
+                background-repeat: no-repeat;
+                background-position: center;
+                @media (min-width: 200px) and (max-width: 449px) {
+                  background-size: 100%;
+                }
+              `,
+            ]}
+			======= xl:min-w-[720px] xl:min-h-[405px] xl:max-w-[880px] xl:max-h-[490px]
+			===================xl:min-w-[720px] xl:min-h-[405px] xl:max-w-[880px] xl:max-h-[490px] 
+			==============================
+        // const { reset } = useForm<FormValue>()
+
+  const resetFormValueFromLocalStorage = () => {
+    if (typeof window !== 'undefined') {
+      const storedItems = localStorage.getItem('items') || ''
+      const parsedItems = JSON.parse(storedItems)
+      console.log('localstatehere', parsedItems)
+
+      if (parsedItems && parsedItems !== null && parsedItems !== undefined) {
+        reset({
+          details: {
+            firstName: parsedItems.details.firstName || 'hmmm',
+            lastName: parsedItems.details.lastName || '',
+            phoneCode: parsedItems.details.phoneCode || '',
+            phoneNumber: parsedItems.details.phoneNumber || '',
+            email: parsedItems.details.email || '',
+            country: parsedItems.details.country || '',
+            city: parsedItems.details.city || '',
+            address: parsedItems.details.address || '',
+            postalAddress: parsedItems.details.postalAddress || '',
+          },
+          amount: parsedItems.amount || 1,
+          bonus: parsedItems.bonus || 0,
+          videoId: parsedItems.videoId || null,
+          isInPost: parsedItems.isInPost || false,
+          rodo: parsedItems.rodo || false,
+          marketing: parsedItems.marketing || false,
+        })
+      }
+    }
+  }
+  const debouncedSendVoucherData = useDebouncedCallback(() => {
+    resetFormValueFromLocalStorage()
+  }, 2000)
+  useEffect(() => {
+    debouncedSendVoucherData()
+  }, [])

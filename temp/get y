@@ -1,0 +1,33 @@
+import { useEffect, useState } from 'react'
+
+const useScrollToBottom = (): number => {
+  const [scrollCount, setScrollCount] = useState(0)
+
+  useEffect(() => {
+    let isAtBottom = false // Для отслеживания предыдущего состояния
+
+    const handleScroll = () => {
+      const atBottom =
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight
+
+      if (atBottom && !isAtBottom) {
+        isAtBottom = true
+        setScrollCount((prev) => prev + 1) // Увеличиваем счетчик при достижении низа
+      } else if (!atBottom && isAtBottom) {
+        isAtBottom = false // Сбрасываем, когда больше не внизу
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Проверяем позицию скролла при загрузке страницы
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  return scrollCount
+}
+
+export default useScrollToBottom
