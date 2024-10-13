@@ -1,5 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
+import Javascript from "./tempJS/javascript.tsx";
+import { data } from "./tempJS/data.tsx";
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         >
           Learn React
         </a>
+        <Javascript data={data} />
       </header>
     </div>
   );
@@ -242,7 +245,52 @@ function App() {
 // }
 
 // console.log(closed("svitlanka", "i")); // Output: Your letter is found at positions: 2 and the total number of characters is: 9
-const name = "svitlnka";
-console.log(name[0]);
+// const name = "svitlnka";
+// console.log(name[0]);
+
+// var total = 0,
+//   count = 1;
+// while (count <= 10) {
+//   total += count;
+//   count += 1;
+// }
+// console.log(total);
+
+// console.log(sum(Range(1, 10)));
+
+// var array = [1, 2, 3];
+// for (var i = 0; i < array.length; i++) {
+//   var current = array[i];
+//   console.log(current);
+// }
+// function gatherCorrelations(journal) {
+//   var phis = {};
+//   for (var entry = 0; entry < journal.length; entry++) {
+//     var events = journal[entry].events;
+//     for (var i = 0; i < events.length; i++) {
+//       var event = events[i];
+//       if (!(event in phis)) phis[event] = phi(tableFor(event, journal));
+//     }
+//   }
+//   return phis;
+// }
+
+// var string = JSON.stringify({ name: "X", born: 1980 });
+// console.log(string);
+// // → {"name":"X","born":1980}
+// console.log(JSON.parse(string).born);
+// // → 1980
+// var ancestry = JSON.parse(ANCESTRY_FILE);
+// console.log(ancestry.length);
+// function filter(array, test) {
+//   var passed = [];
+//   for (var i = 0; i < array.length; i++) {
+//   if (test(array[i]))
+//   passed.push(array[i]);
+//   }
+//   return passed;
+//   }
+//   console.log(filter(ancestry, function(person) {
+//   return person.born > 1900 && person.born < 1925;
 
 export default App;
