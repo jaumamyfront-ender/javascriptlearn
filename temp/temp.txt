@@ -91,3 +91,9 @@
   useEffect(() => {
     debouncedSendVoucherData()
   }, [])
+    const debouncedSendVoucherData = useDebouncedCallback(() => {
+    resetFormValueFromLocalStorage()
+  }, 2000)
+  useEffect(() => {
+    debouncedSendVoucherData()
+  }, [])
